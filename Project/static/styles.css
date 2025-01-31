@@ -1,0 +1,157 @@
+.cascading {
+    overflow-wrap: normal;
+    white-space: wrap;
+  }
+
+.cascading span {
+    display:flow-root;
+    animation: cascading 2s ease forwards;
+    opacity: 0;
+  }
+.cascading h1 {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    border: 2px solid pink;
+  }
+
+  .cascading p {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+  }  
+  
+@keyframes cascading {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+body {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("images/gym_1.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@media (max-width: 767px) {
+  body {
+    background-image: url("images/gym_1_mobile.jpg");
+  }
+}
+
+.stroke-text
+{
+    padding-top: 1vh;
+    color: white;
+    font-family: Montserrat, sans-serif;
+}
+
+h1 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  color: black;
+}
+
+.text-container {
+  background-color: rgba(151, 150, 161, 0.15);
+  padding: 1vw;
+  border-radius: 10px;
+  display: inline-block;
+  font-family: Montserrat, sans-serif;
+}
+
+.summary {
+  color: black
+}
+.form-padding {
+  padding-top: 2vh;
+}
+
+.input-hint {
+  padding-top: 2vh;
+  color: lightgray;
+  font-size: medium;
+  font-stretch: condensed;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-size: cover;
+  }
+}
+
+.accordion-body {
+  background-color: rgba(141, 145, 141, 0.5);
+}
+
+.accordion-button {
+  background-color: black;
+  color: white;
+}
+.accordion-button:after {
+  background-color: rgb(161, 150, 161);
+}
+.accordion-button:not(.collapsed):after{
+  background-color: rgb(161, 150, 161);
+}
+.accordion-button:not(.collapsed) {
+  background-color: black;
+  color: white;
+}
+.accordion-item {
+  background-color: #e1f5fe;
+}
+
+.menu-hint {
+  font-style: italic;
+  color: lightgray;
+}
+.row {
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.table {
+  font-family: Montserrat, sans-serif;
+}
+nav {
+  font-family: Montserrat, sans-serif;
+}
+.card-image {
+  width: 300px;
+  height: auto;
+  align-self: center;
+}
+.card {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.list-group-item {
+  background-color: darkgrey
+}
+.card {
+  background-color: gray;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+@media (min-width: 992px) {
+  .card {
+    width: 60rem;
+  }
+}
+
+.img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

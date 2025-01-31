@@ -1,0 +1,108 @@
+{% extends "layout.html" %} {% block main %} {% if user_data %}
+
+<h1 class="cascading stroke-text">
+  <span class="text-container rounded-pill">Hello, {{ name }} !</span>
+</h1>
+
+<h3 class="cascading stroke-text rounded-pill">
+  <span class="text-container">
+    Your Body Mass Index (BMI) is {{ user_data.bmi }}.
+    <br />
+    Your blood pressure status is : {{ user_data.bps }}
+    <br />
+    Your max heartrate is : {{ user_data.max_heartrate }}
+    <br />
+    Your goal pulse is {{ user_data.gp_lower }} to {{ user_data.gp_upper }} BPM
+    <br />
+  </span>
+</h3>
+
+{% else %}
+
+<h3 class="cascading stroke-text">
+  <span class="text-container rounded-pill"
+    >You haven't provided data about yourself yet! Head over to Health test to
+    get your health results.</span
+  >
+</h3>
+{% endif %} {% if favourites %}
+<h3 class="cascading stroke-text">
+  <span class="text-container rounded-pill">Here are your favourites: </span>
+</h3>
+<form
+  action="/unfavourite"
+  method="post"
+  name="unfavourite_exercise"
+  id="unfavourite_form"
+>
+  <div class="row">
+    {% for favourite in favourites %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card mb-4">
+        <img
+          class="card-image card-img-top"
+          src="{{ favourite.image_url }}"
+          alt="Picture of exercise"
+          width="500"
+          height="auto"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ favourite.exercise_name }}</h5>
+          <p class="card-text">
+            <details>
+              <summary>See more...</summary>
+              <p>{{ favourite.instructions }}</p>
+            </details>
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Equipment: {{ favourite.equipment }}</li>
+          <li class="list-group-item">Muscle Group: {{ favourite.muscle }}</li>
+          <li class="list-group-item">
+            Difficulty: {{ favourite.difficulty }}
+          </li>
+          <li class="list-group-item">Remove from Favourites:</li>
+          <li class="list-group-item">
+            <input
+              type="checkbox"
+              name="unfavourite_exercise"
+              value="{{ favourite.exercise_id }}"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button
+    class="btn btn-danger rounded-pill"
+    type="submit"
+    style="margin-bottom: 10px"
+  >
+    Remove from Favourites
+  </button>
+</form>
+<script>
+  document
+    .getElementById("unfavourite_form")
+    .addEventListener("submit", function (event) {
+      const checkboxes = document.querySelectorAll(
+        'input[name="unfavourite_exercise"]'
+      );
+      const isChecked = Array.from(checkboxes).some(
+        (checkbox) => checkbox.checked
+      );
+
+      if (!isChecked) {
+        event.preventDefault();
+        alert("Please select at least one exercise to remove from favourites.");
+      }
+    });
+</script>
+{% else %}
+<h3 class="cascading stroke-text">
+  <span class="text-container rounded-pill"
+    >You don't have any favourites yet</span
+  >
+</h3>
+{% endif %} {% endblock %}

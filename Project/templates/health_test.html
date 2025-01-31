@@ -1,0 +1,100 @@
+{% extends "layout.html" %} {% block main %}
+<h1 class="cascading stroke-text">
+  <span class="text-container rounded-pill"
+    >Provide us with data about yourself below:</span
+  >
+</h1>
+
+<form
+  id="health_test_form"
+  class="text-container stroke-text rounded-pill"
+  action="/health_test"
+  method="post"
+>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <input
+          class="form-control form-control-md rounded-pill"
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Name"
+        />
+      </div>
+      <div class="col">
+        <input
+          class="form-control form-control-md rounded-pill"
+          type="number"
+          name="age"
+          id="age"
+          min="1"
+          placeholder="Age"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input
+          class="form-control form-control-md rounded-pill"
+          type="number"
+          name="weight"
+          id="weight"
+          min="1"
+          step="0.1"
+          placeholder="Weight (in kgs)"
+        />
+      </div>
+      <div class="col">
+        <input
+          class="form-control form-control-md rounded-pill"
+          type="number"
+          name="height"
+          id="height"
+          placeholder="Height (in cm)"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input
+          class="form-control form-control-md rounded-pill"
+          type="number"
+          name="blood_pressure_systolic"
+          id="blood_pressure_systolic"
+          placeholder="Blood Pressure Systolic"
+        />
+      </div>
+      <div class="col">
+        <input
+          class="form-control form-control-md rounded-pill"
+          type="number"
+          name="blood_pressure_diastolic"
+          id="blood_pressure_diastolic"
+          placeholder="Blood Pressure Diastolic"
+        />
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-md btn-success rounded-pill" type="submit">
+    Get results
+  </button>
+</form>
+<script>
+  document
+    .getElementById("health_test_form")
+    .addEventListener("submit", function (event) {
+      const inputs = document.querySelectorAll(
+        'input[name="name"], input[name="age"], input[name="weight"], input[name="height"], input[name="blood_pressure_systolic"], input[name="blood_pressure_diastolic"]'
+      );
+      const allFilled = Array.from(inputs).every(
+        (input) => input.value.trim() !== ""
+      );
+
+      if (!allFilled) {
+        event.preventDefault();
+        alert("Please fill all the boxes.");
+      }
+    });
+</script>
+{% endblock %}

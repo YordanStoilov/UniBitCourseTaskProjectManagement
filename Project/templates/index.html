@@ -1,0 +1,42 @@
+{% extends "layout.html" %} {% block main %} {% if not session["user_id"] %}
+<h2 class="cascading stroke-text">
+  <span class="text-container container rounded-pill"
+    >Sign Up or Log In to enjoy the benefits!</span
+  >
+</h2>
+<p
+  class="cascading stroke-text rounded-pill"
+  style="text-align: center; font-size: x-large"
+>
+  <span class="text-container"
+    >Stay on top of your health and fitness with our comprehensive tools and
+    resources. Check on your health status by inputting data about your blood
+    pressure, heart rate, age, height and weight. Find new exercises to add to
+    your workout regimen and make sure you perform them correctly with detailed
+    instructions. Add exercise to your Favourites and remove them whenever you
+    please! Enjoy constantly updated musical selections designed to keep you
+    motivated during your workouts. Take the first step towards a healthier,
+    more active lifestyle! Click the dropdown menu above to Log in or Register!
+  </span>
+</p>
+{% else %}
+<h2 class="cascading stroke-text">
+  <span class="text-container container rounded-pill">Welcome to StayFit!</span>
+</h2>
+<p
+  class="cascading stroke-text rounded-pill"
+  style="text-align: center; font-size: x-large"
+>
+  <span class="text-container"
+    >Welcome to our fitness community! We're thrilled to have you with us on
+    this journey to better health. Don't forget to check your overall wellness
+    by visiting our Health Test Menu, where you can find your BMI, blood
+    pressure status, and learn about your goal pulse and max heart rate. Explore
+    our extensive Search Workouts section for exercises tailored to your needs,
+    categorized by type, muscle group, and difficulty level. Save your favorite
+    workouts in your Profile page, and feel free to remove them whenever you
+    like. For an extra boost, head over to our Get Motivated section for
+    personalized workout playlists designed to keep you moving!
+  </span>
+</p>
+{% endif %} {% endblock %}

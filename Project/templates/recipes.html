@@ -1,0 +1,71 @@
+{% extends "layout.html" %} {% block main %} {% if not results %}
+<h2 class="cascading stroke-text">
+  <span class="text-container container rounded-pill"
+    >Use the search bar below to look for recipes:</span
+  >
+</h2>
+<form action="/recipes" method="post" id="recipe-form" style="margin-top: 22vh">
+  <label style="margin-right: 10px" class="form-label menu-hint" for="query"
+    >Search</label
+  >
+  <input
+    class="form-control-sm rounded-pill"
+    type="text"
+    name="query"
+    id="query"
+    required
+  />
+  <button
+    type="submit"
+    class="btn btn-success btn-md rounded-pill"
+    style="margin-left: 5px"
+  >
+    Go!
+  </button>
+</form>
+{% else %}
+<form action="/favourite_recipe">
+  <div class="row">
+    {% for result in results %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card mb-4 border-light" style="width: 18rem">
+        <img src="{{ result.image_url }}" class="card-img-top" />
+        <div class="card-body">
+          <h5 class="card-title" style="padding-bottom: 10px">
+            {{ result.title }}
+          </h5>
+          <p class="card-text">{{ result.servings }}</p>
+          <details style="margin-bottom: 10px">
+            <summary>Ingredients</summary>
+            <div class="card-text">
+              <ul class="list-group list-group-flush">
+                {% for ingredient in result.ingredients %}
+                <li class="list-group-item">{{ ingredient }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </details>
+          <details style="margin-bottom: 10px">
+            <summary>Preparation</summary>
+            <p class="card-text">{{ result.instructions }}</p>
+          </details>
+        </div>
+      </div>
+      <input
+        type="checkbox"
+        name="favourite_recipe"
+        id="{{ result.recipe_id }}"
+        value="{{ result.title }}|{{ result.servings }}|{{ result.ingredients }}|{{ result.instructions }}|{{ result.recipe_id }}|{{ result.image_url }}"
+      />
+    </div>
+    {% endfor %}
+  </div>
+  <button
+    class="btn btn-success rounded-pill"
+    type="submit"
+    style="margin-bottom: 10px"
+  >
+    Save to Favourites
+  </button>
+</form>
+{% endif %} {% endblock %}

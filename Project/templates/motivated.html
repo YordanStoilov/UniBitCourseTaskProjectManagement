@@ -1,0 +1,46 @@
+{% extends "layout.html" %} {% block main %} {% if not results %}
+<h1 class="cascading stroke-text">
+  <span class="text-container rounded-pill"
+    >Search for musical playlists to keep you motivated!</span
+  >
+</h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <form action="/motivated" method="post" id="motivated_form">
+        <label
+          style="margin-right: 10px"
+          class="form-label menu-hint"
+          for="keyword"
+          >Select genre or any other keyword</label
+        >
+        <input
+          class="form-control-sm rounded-pill"
+          type="text"
+          name="keyword"
+          id="keyword"
+          required
+        />
+        <button
+          class="btn btn-success btn-md rounded-pill"
+          style="margin-left: 5px"
+        >
+          Go!
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% else %} {% for result in results %}
+
+<iframe
+  style="border-radius: 12px"
+  src="{{ result.music_link }}"
+  width="100%"
+  height="352"
+  frameborder="g"
+  allowfullscreen=""
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  loading="lazy"
+></iframe>
+{% endfor %} {% endif %} {% endblock %}

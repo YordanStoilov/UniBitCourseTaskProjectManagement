@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block main %}
+<h1 class="cascading stroke-text">
+  <span class="text-container">Here are your results:</span>
+</h1>
+
+<h3 class="cascading stroke-text">
+  <span class="text-container rounded-pill">
+    Your Body Mass Index (BMI) is {{ bmi }}.
+    <br />
+    Your blood pressure status is : {{ bps }}
+    <br />
+    Your max heartrate is : {{ max_heartrate }}
+    <br />
+    Your goal pulse is {{ goal_pulse[0] }} to {{ goal_pulse[1] }} BPM
+    <br />
+  </span>
+</h3>
+<h4 class="cascading stroke-text">
+  <span class="text-container rounded-pill"
+    >Now we have your data saved and you can always head over to Profile to view
+    it or go to Health Test to overwrite it.</span
+  >
+</h4>
+{% endblock %}

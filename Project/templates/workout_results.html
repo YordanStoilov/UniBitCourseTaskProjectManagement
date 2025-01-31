@@ -1,0 +1,82 @@
+{% extends "layout.html" %} {% block main %}
+<div class="container">
+  <form
+    action="/add_favourite"
+    method="post"
+    name="favourite"
+    id="favourite-form"
+  >
+    <div class="row">
+      {% for result in results %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card mb-4">
+          <img
+            class="card-image card-img-top"
+            src="{{ result.image_url }}"
+            alt="Picture of exercise"
+            width="500"
+            height="auto"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ result.name }}</h5>
+            <p class="card-text">
+              <details>
+                <summary>See more...</summary>
+                <p>{{ result.instructions }}</p>
+              </details>
+            </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Equipment: {{ result.equipment }}</li>
+            <li class="list-group-item">Muscle Group: {{ result.muscle }}</li>
+            <li class="list-group-item">Difficulty: {{ result.difficulty }}</li>
+            <li class="list-group-item">Add Favourite:</li>
+            <li class="list-group-item">
+              <input
+                type="checkbox"
+                name="favourite_exercise"
+                id="{{ result.exercise_id }}"
+                value="{{ result.equipment }}|{{ result.instructions }}|{{ result.exercise_id }}|{{ result.image_url }}"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button
+      class="btn btn-success rounded-pill"
+      type="submit"
+      style="margin-bottom: 10px"
+    >
+      Save to Favourites
+    </button>
+  </form>
+</div>
+
+<script>
+  document
+    .getElementById("favourite-form")
+    .addEventListener("submit", function (event) {
+      const checkboxes = document.querySelectorAll(
+        'input[name="favourite_exercise"]'
+      );
+      const isChecked = Array.from(checkboxes).some(
+        (checkbox) => checkbox.checked
+      );
+
+      if (!isChecked) {
+        event.preventDefault();
+        alert("Please select at least one exercise to save to favourites.");
+      }
+    });
+</script>
+
+<style>
+  @media (min-width: 992px) {
+    .card {
+      width: 30rem;
+    }
+  }
+</style>
+{% endblock %}
